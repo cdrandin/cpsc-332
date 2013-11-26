@@ -52,6 +52,43 @@ def save(request):
 		# request.POST is immutable, so copy it
 		post = request.POST.copy()
 
-	print(post)
+		if post['table'] == 'herd':
+			form = HerdsForm(post)
 
-	return HttpResponse(request)
+		elif post['table'] == 'cow':
+			form = CowsForm(post)
+
+		elif post['table'] == 'vet':
+			form = VetsForm(post)
+
+		elif post['table'] == 'feeding':
+			form = FeedingsForm(post)
+
+		elif post['table'] == 'food_source':
+			form = Food_SourcesForm(post)
+
+		elif post['table'] == 'consult':
+			form = ConsultationsForm(post)
+
+		elif post['table'] == 'treatment':
+			form = TreatmentsForm(post)
+
+		elif post['table'] == 'milking':
+			form = MilkingsForm(post)
+
+		elif post['table'] == 'supplier':
+			form = SuppliersForm(post)
+
+		elif post['table'] == 'food_purchase':
+			form = Food_PurchaseForm(post)
+
+		elif post['table'] == 'feed':
+			form = FeedForm(post)
+
+		# Check that the event_form has been filled out correctly, then store it in database and redirect to new page
+		if form.is_valid():
+			# commit=False, means it does not save yet, but we have an instance of our model with the new info
+			saved_info = form.save(commit=False)
+			saved_info.save() #now save to db
+
+	return HttpResponse(saved_info)

@@ -3,7 +3,7 @@ from django.forms import ModelForm, Textarea
 
 
 ###
-# Create table like this ... 
+# Create post['table] like this ... 
 # python manage.py sql dairy_farm
 # python manage.py syncdb
 ###
@@ -12,7 +12,7 @@ class Herds(models.Model):
 	location = models.CharField(max_length = 30)
 
 	def __unicode__(self):
-		return u'%s' % (location)
+		return u'%s' % (self.location)
 
 class HerdsForm(ModelForm):
 	class Meta:
@@ -34,7 +34,7 @@ class Cows(models.Model):
 	location         = models.CharField(max_length = 20)
 
 	def __unicode__(self):
-		return u'%s %s %s' % (born, breed, herd)
+		return u'%s %s %s' % (self.born, self.breed, self.herd)
 
 class CowsForm(ModelForm):
 	class Meta:
@@ -48,7 +48,7 @@ class Vets(models.Model):
 	zip_code = models.CharField(max_length = 10)
 
 	def __unicode__(self):
-		return u'%s %s' % (tech_name, address)
+		return u'%s %s' % (self.tech_name, self.address)
 
 class VetsForm(ModelForm):
 	class Meta:
@@ -64,7 +64,7 @@ class Feedings(models.Model):
 	waste       = models.FloatField()
 
 	def __unicode__(self):
-		return u'%s %s %s' % (herd, date, time)
+		return u'%s %s %s' % (self.herd, self.date, self.time)
 
 class FeedingsForm(ModelForm):
 	class Meta:
@@ -75,7 +75,7 @@ class Food_Sources(models.Model):
 	comments = models.TextField()
 
 	def __unicode__(self):
-		return u'%s' % (comments)
+		return u'%s' % (self.comments)
 
 class Food_SourcesForm(ModelForm):
 	class Meta:
@@ -89,7 +89,7 @@ class Consultations(models.Model):
 	vet    = models.ForeignKey('Vets')
 
 	def __unicode__(self):
-		return u'%s %s' % (cow, vet)
+		return u'%s %s' % (self.cow, self.vet)
 
 class ConsultationsForm(ModelForm):
 	class Meta:
@@ -101,7 +101,7 @@ class Treatments(models.Model):
 	type = models.CharField(max_length = 20)
 
 	def __unicode__(self):
-		return u'%s %s' % (dose, type)
+		return u'%s %s' % (self.dose, self.type)
 
 class TreatmentsForm(ModelForm):
 	class Meta:
@@ -115,7 +115,7 @@ class Milkings(models.Model):
 	comments = models.TextField()
 
 	def __unicode__(self):
-		return u'%s %s %s' % (cow, date, quantity)
+		return u'%s %s %s' % (self.cow, self.date, self.quantity)
 
 class MilkingsForm(ModelForm):
 	class Meta:
@@ -130,7 +130,7 @@ class Suppliers(models.Model):
 	zip_code = models.CharField(max_length = 10)
 
 	def __unicode__(self):
-		return u'%s %s' % (phone, address)
+		return u'%s %s' % (self.phone, self.address)
 
 class SuppliersForm(ModelForm):
 	class Meta:
@@ -143,7 +143,7 @@ class Food_Purchases(models.Model):
 	supplier      = models.ForeignKey('Suppliers')
 
 	def __unicode__(self):
-		return u'%s %s %s' % (date, delivery_cost, supplier)
+		return u'%s %s %s' % (self.date, self.delivery_cost, self.supplier)
 
 class Food_PurchasesForm(ModelForm):
 	class Meta:
@@ -158,7 +158,7 @@ class Feed(models.Model):
 	amount        = models.FloatField()
 
 	def __unicode__(self):
-		return u'%s %s %s' % (food_purchase, protein, cost)
+		return u'%s %s %s' % (self.food_purchase, self.protein, self.cost)
 
 class FeedForm(ModelForm):
 	class Meta:
