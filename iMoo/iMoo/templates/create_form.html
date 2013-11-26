@@ -1,0 +1,12 @@
+{% url save_url as form %}
+
+<form action= "{{form}}" method="post">
+	{% csrf_token %}
+	<input type="hidden" value="{{table}}" name="table"/>
+
+	{{create_form.as_p}}
+	<input type="submit" value="submit" />
+</form>
+
+</body>
+</html>
